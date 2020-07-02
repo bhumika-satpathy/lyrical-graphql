@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       lyrics: {
-        type: Sequelize.ARRAY,
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
       },
       createdAt: {
         allowNull: false,
