@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "Bhumika_Satpathy",
+    "password": null,
+    "database": "lyrical-graphql",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "Bhumika_Satpathy",
+    "password": null,
+    "database": "lyrical-graphql",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "Bhumika_Satpathy",
+    "password": null,
+    "database": "lyrical-graphql",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
