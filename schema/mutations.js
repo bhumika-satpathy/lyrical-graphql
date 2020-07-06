@@ -1,8 +1,9 @@
 const graphql = require('graphql');
 const SongType = require('./song_type');
+const db = require('../models/index');
 
 const {
-  GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID,
+  GraphQLObjectType, GraphQLString, GraphQLID,
 } = graphql;
 const LyricType = require('./lyric_type');
 
@@ -12,53 +13,54 @@ const mutation = new GraphQLObjectType({
     addSong: {
       type: SongType,
       args: {
-        id: GraphQLString,
-        title: GraphQLString,
+        id: { type: GraphQLString },
+        title: { type: GraphQLString },
       },
-      resolve(parentValue, args) {
-        return 'add song';
+      resolve: async (parentValue, args) => {
+        const newSong = {
+          songId: args.id,
+          title: args.title,
+          lyrics: [],
+        };
+        await db.songs.create(newSong);
+        return newSong;
       },
     },
 
     addLyricToSong: {
       type: SongType,
       args: {
-        songId: {
-          type: GraphQLID,
-        },
-        content: {
-          type: GraphQLString,
-        },
+        id: { type: GraphQLID },
+        content: { type: GraphQLString },
       },
       resolve(parentValue, args) {
         return 'Lyric added';
       },
     },
 
-    likeLyric: {
-      type: LyricType,
-      args: {
-        id: {
-          type: GraphQLID,
-        },
-      },
-      resolve(parentValue, args) {
-        return 'Liked the lyric';
-      },
-    },
+    // likeLyric: {
+    //   type: LyricType,
+    //   args: {
+    //     id: {
+    //       type: GraphQLID,
+    //     },
+    //   },
+    //   resolve(parentValue, args) {
+    //     return 'Liked the lyric';
+    //   },
+    // },
 
-    deleteSong: {
-      type: SongType,
-      args: {
-        id:
-                {
-                  type: GraphQLID,
-                },
-      },
-      resolve(parentValue, args) {
-        return 'Deleted the song';
-      },
-    },
+    // deleteSong: {
+    //   type: SongType,
+    //   args: {
+    //     id: {
+    //       type: GraphQLID,
+    //     },
+    //   },
+    //   resolve(parentValue, args) {
+    //     return 'Deleted the song';
+    //   },
+    // },
   }),
 });
 
