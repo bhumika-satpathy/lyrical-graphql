@@ -1,33 +1,3 @@
-// const graphql = require('graphql');
-
-// const {
-//   GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID,
-// } = graphql;
-// const SongType = require('./song_type');
-
-// const LyricType = new GraphQLObjectType({
-//   name: 'LyricType',
-//   fields: () => ({
-//     id: {
-//       type: GraphQLInt,
-//     },
-//     likes: {
-//       type: GraphQLInt,
-//     },
-//     content: {
-//       type: GraphQLString,
-//     },
-//     song: {
-//       type: SongType,
-//       resolve(parentValue) {
-//         return {};
-//       },
-//     },
-//   }),
-// });
-
-// module.exports = LyricType;
-
 const graphql = require('graphql');
 
 const {

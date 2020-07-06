@@ -3,9 +3,8 @@ const SongType = require('./song_type');
 const db = require('../models/index');
 
 const {
-  GraphQLObjectType, GraphQLString, GraphQLID,
+  GraphQLObjectType, GraphQLString, GraphQLInt,
 } = graphql;
-const LyricType = require('./lyric_type');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -28,39 +27,53 @@ const mutation = new GraphQLObjectType({
     },
 
     addLyricToSong: {
-      type: SongType,
+      type: GraphQLString,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         content: { type: GraphQLString },
       },
-      resolve(parentValue, args) {
-        return 'Lyric added';
+      resolve: async (parentValue, args) => {
+        await db.lyrics.create({
+          song: args.id,
+          content: args.content,
+        });
+        return 'Lyric added successfully!';
       },
     },
 
-    // likeLyric: {
-    //   type: LyricType,
-    //   args: {
-    //     id: {
-    //       type: GraphQLID,
-    //     },
-    //   },
-    //   resolve(parentValue, args) {
-    //     return 'Liked the lyric';
-    //   },
-    // },
+    likeLyric: {
+      type: GraphQLString,
+      args: {
+        id: {
+          type: GraphQLInt,
+        },
+      },
+      resolve: async (parentValue, args) => {
+        await db.lyrics.update({ likes: 1 }, {
+          where: {
+            id: args.id,
+          },
+        });
+        return 'Lyric Liked!';
+      },
+    },
 
-    // deleteSong: {
-    //   type: SongType,
-    //   args: {
-    //     id: {
-    //       type: GraphQLID,
-    //     },
-    //   },
-    //   resolve(parentValue, args) {
-    //     return 'Deleted the song';
-    //   },
-    // },
+    deleteSong: {
+      type: GraphQLString,
+      args: {
+        id: {
+          type: GraphQLString,
+        },
+      },
+      resolve: async (parentValue, args) => {
+        await db.songs.destroy({
+          where: {
+            songId: args.id,
+          },
+        });
+        return 'Song deleted successfully!';
+      },
+    },
   }),
 });
 
