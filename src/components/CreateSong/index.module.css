@@ -1,0 +1,57 @@
+.newSong{
+    height: 100%;
+    width: 1150px;
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.songForm{
+    height: 250px;
+    width: 620px;
+    border-radius: 10px;
+    box-shadow: 5px 7px 13px #4fa7bb;
+    background-image: linear-gradient(#85cace, #55c3e6);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.songForm:hover{
+    box-shadow: 7px 8px 10px #4fa7bb;
+}
+
+input{
+    border-radius: 10px;
+    height: 30px;
+    width: 221px;
+    outline: none;
+}
+
+.createSong{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 180px;
+    width: 370px;
+}
+
+button{
+    height: 46px;
+    width: 124px;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+}
+
+button:hover{
+    box-shadow: 1px 1px 5px white;
+    cursor: pointer;
+}
+
+.head{
+    color:#2b9eab
+}

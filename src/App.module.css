@@ -1,0 +1,10 @@
+.add{
+  color: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  font-size: 81px;
+  cursor: pointer;
+  margin-top: 50px;
+}
