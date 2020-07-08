@@ -1,5 +1,4 @@
 const graphql = require('graphql');
-const SongType = require('./song_type');
 const db = require('../models/index');
 
 const {
@@ -10,7 +9,7 @@ const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
     addSong: {
-      type: SongType,
+      type: GraphQLString,
       args: {
         id: { type: GraphQLString },
         title: { type: GraphQLString },
@@ -22,7 +21,7 @@ const mutation = new GraphQLObjectType({
           lyrics: [],
         };
         await db.songs.create(newSong);
-        return newSong;
+        return 'Song added successfully!';
       },
     },
 
